@@ -5,14 +5,6 @@ import random
 from flask import Flask, render_template
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return "No hablo queso"
-
-@app.route("/occupations")
-def jobs():
-    return render_template("Occupations.html", jobs = "Occupations")
-
 def randjob():
     #store the data from the csv into a list, s
     a = open ('occupations.csv', 'r')
@@ -29,7 +21,7 @@ def randjob():
             dict[job[1:job.rfind('"')]] = float(job[job.rfind(',')+1:])
         else:
             dict[job[:job.rfind(',')]] = float(job[job.rfind(',')+1:])
-    return weightedrand(dict)
+    return dict
 
 def weightedrand(dict):
     r = random.random() * 99.8
@@ -40,6 +32,16 @@ def weightedrand(dict):
             return job
         else:
             start = stop
+
+@app.route("/")
+def hello_world():
+    return "No hablo queso"
+
+@app.route("/occupations")
+def jobs():
+    joblist = (randjob()).items()
+    return render_template("Occupations.html", jobs = "Occupations", diction = joblist, rand = weightedrand(randjob()))
+
 
 if __name__=="__main__":
     app.run()

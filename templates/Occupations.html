@@ -6,11 +6,22 @@
 
   <body>
     <h1><center>{{ jobs }}</center></h1>
-    <table>
+    <center>
+    <table border="1">
       <tr>
 	<th>Job Class</th>
 	<th>Percentage</th>
       </tr>
+      {% for stuff in diction %}
       <tr>
+	<td>{{ stuff[0] }}</td>
+	<td><center>{{ stuff[1] }}%</center></td>
+      </tr>
+      {% endfor %}
+      </table>
+    <br>
+    <br>
+    According to our sources, you should go into <b>{{ rand }}</b>.
+    </center>
   </body>
 </html>
