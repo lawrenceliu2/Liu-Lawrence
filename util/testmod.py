@@ -4,7 +4,7 @@ import random
 
 def randjob():
     #store the data from the csv into a list, s
-    a = open ('occupations.csv', 'r')
+    a = open ('../data/occupations.csv', 'r')
     s = a.read()
     s = s.split('\n')
     #remove the titles and blank data
@@ -33,3 +33,5 @@ def weightedrand(dict):
 
 def goo():
     return "Testing out stuff, I'm tired."
+
+print (randjob())
